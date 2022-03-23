@@ -375,7 +375,6 @@ sube_marzo_t<-sube_marzo %>%
   summarise(t_mes=sum(CANTIDAD[TIPO_TRANSPORTE=="COLECTIVO"| TIPO_TRANSPORTE=="TREN"|TIPO_TRANSPORTE=="SUBTE"]))
  
 #7 Grafico----
-
 ggplot(data = sube_marzo_t)+
   geom_col(aes(x =FECHA , 
                y=t_mes, 
@@ -386,6 +385,7 @@ ggplot(data = sube_marzo_t)+
                     guide = "legend") + 
   labs(x = "Fecha",                                  #etiquetas
        y = "Total",
+       title= "10/03/20 - 26/04/20",
        fill="Transporte")+
   theme(axis.line=element_blank(),                #plot
         axis.ticks = element_blank(),
@@ -403,12 +403,13 @@ ggplot(data = sube_marzo_t)+
         panel.grid.major=element_line(color = "#636363"),
         panel.grid.minor = element_blank(),
         plot.background = element_rect(fill="black"),
-        plot.margin=unit(c(1, 0.5, 0.5, 0.5), "lines"))+
+        plot.title = element_text(hjust = 0, size = 24,color = "white",family = "sans"),
+        plot.margin=unit(c(1, 1, 1, 0.5), "lines"))+
   scale_y_continuous(limits = c(0,13182637),
                     breaks = c(seq(0,13182637, by=1000000)),
                      labels = scales::label_number(big.mark ="."))+       #puntito
   scale_x_date(date_breaks = "2 days",
-               limits = as.Date(c("2020-03-10","2020-04-26")), 
+               limits = as.Date(c("2020-03-12","2020-04-26")), 
                date_labels = "%e")
 
 
